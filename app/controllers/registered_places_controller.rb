@@ -1,25 +1,25 @@
 class RegisteredPlacesController < ApplicationController
-	before_action :doorkeeper_authentication
-	
-	def new
-		# TBD
-	end
+  before_action :doorkeeper_authentication
 
-	def create
-		# TBD
-	end
+  def new
+    # TBD
+  end
 
-	def update
-		# TBD
-	end
+  def create
+    # TBD
+  end
 
-	def delete
-		# TBD
-	end
+  def update
+    # TBD
+  end
 
-	private
+  def delete
+    # TBD
+  end
 
-	def permit_params
-		params.require(:places).permit
-	end
+  private
+
+  def permit_params
+    params.require(:places).permit
+  end
 end

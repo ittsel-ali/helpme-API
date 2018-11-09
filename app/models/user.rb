@@ -5,14 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-	
-	class << self
-		def authenticate(email, password)
-	    user = User.find_for_database_authentication(:email => email)
-	    
-	    if user&.valid_for_authentication? { user.valid_password?(password) } && user&.active_for_authentication?
-	      user
-	    end
-	   end
- 	end
+
+  class << self
+    def authenticate(email, password)
+      user = User.find_for_database_authentication(:email => email)
+
+      if user&.valid_for_authentication? { user.valid_password?(password) } && user&.active_for_authentication?
+        user
+      end
+     end
+  end
 end
