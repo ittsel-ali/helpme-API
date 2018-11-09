@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_225107) do
+ActiveRecord::Schema.define(version: 2018_11_09_191142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nearby_places", force: :cascade do |t|
+    t.string "google_place_id"
+    t.string "google_place_lat"
+    t.string "google_place_lng"
+    t.bigint "user_location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_location_id"], name: "index_nearby_places_on_user_location_id"
+  end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer "resource_owner_id"
@@ -27,6 +37,15 @@ ActiveRecord::Schema.define(version: 2018_10_26_225107) do
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
+  end
+
+  create_table "user_locations", force: :cascade do |t|
+    t.string "lat"
+    t.string "lng"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_locations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

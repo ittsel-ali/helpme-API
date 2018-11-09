@@ -1,5 +1,4 @@
-class RegisteredPlacesController < ApplicationController
-  before_action :doorkeeper_authentication
+class RegisteredPlacesController < PlacesController
 
   def new
     # TBD

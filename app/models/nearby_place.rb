@@ -1,0 +1,2 @@
+class NearbyPlace < ApplicationRecord
+end
