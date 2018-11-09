@@ -9,8 +9,8 @@ end
 
 resource :places, only: [] do
   	collection do 
-  		get 'get_nearby'
-  		get 'get_connected'
+  		post 'get_nearby'
+  		post 'get_connected'
   	end 
   end  
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
