@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   use_doorkeeper do
   skip_controllers :authorizations, :applications,
     :authorized_applications
+  
 end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+resource :places, only: [] do
+  	collection do 
+  		get 'get_nearby'
+  		get 'get_connected'
+  	end 
+  end  
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
