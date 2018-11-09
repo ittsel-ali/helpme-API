@@ -1,0 +1,2 @@
+class AcknowledgedPost < ApplicationRecord
+end

@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_191142) do
+ActiveRecord::Schema.define(version: 2018_11_09_225539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acknowledged_posts", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "visited_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_acknowledged_posts_on_post_id"
+    t.index ["visited_place_id"], name: "index_acknowledged_posts_on_visited_place_id"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "code"
+    t.boolean "redeemed?", default: false, null: false
+    t.string "couponable_type"
+    t.bigint "couponable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["couponable_type", "couponable_id"], name: "index_coupons_on_couponable_type_and_couponable_id"
+  end
 
   create_table "nearby_places", force: :cascade do |t|
     t.string "google_place_id"
@@ -39,6 +58,15 @@ ActiveRecord::Schema.define(version: 2018_11_09_191142) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "text"
+    t.string "price"
+    t.bigint "visited_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visited_place_id"], name: "index_posts_on_visited_place_id"
+  end
+
   create_table "user_locations", force: :cascade do |t|
     t.string "lat"
     t.string "lng"
@@ -58,6 +86,16 @@ ActiveRecord::Schema.define(version: 2018_11_09_191142) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "visited_places", force: :cascade do |t|
+    t.boolean "active?", default: false, null: false
+    t.bigint "user_id"
+    t.bigint "registered_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registered_place_id"], name: "index_visited_places_on_registered_place_id"
+    t.index ["user_id"], name: "index_visited_places_on_user_id"
   end
 
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
