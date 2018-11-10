@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_225539) do
+ActiveRecord::Schema.define(version: 2018_11_10_010139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "acknowledged_posts", force: :cascade do |t|
     t.bigint "post_id"
-    t.bigint "visited_place_id"
+    t.bigint "visitor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_acknowledged_posts_on_post_id"
-    t.index ["visited_place_id"], name: "index_acknowledged_posts_on_visited_place_id"
+    t.index ["visitor_id"], name: "index_acknowledged_posts_on_visitor_id"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -58,13 +58,30 @@ ActiveRecord::Schema.define(version: 2018_11_09_225539) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
+  create_table "places", force: :cascade do |t|
+    t.string "placeable_type"
+    t.bigint "placeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["placeable_type", "placeable_id"], name: "index_places_on_placeable_type_and_placeable_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "text"
     t.string "price"
-    t.bigint "visited_place_id"
+    t.bigint "visitor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["visited_place_id"], name: "index_posts_on_visited_place_id"
+    t.index ["visitor_id"], name: "index_posts_on_visitor_id"
+  end
+
+  create_table "registered_places", force: :cascade do |t|
+    t.string "name"
+    t.string "lat"
+    t.string "lng"
+    t.string "google_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_locations", force: :cascade do |t|
@@ -88,14 +105,14 @@ ActiveRecord::Schema.define(version: 2018_11_09_225539) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "visited_places", force: :cascade do |t|
+  create_table "visitors", force: :cascade do |t|
     t.boolean "active?", default: false, null: false
     t.bigint "user_id"
     t.bigint "registered_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["registered_place_id"], name: "index_visited_places_on_registered_place_id"
-    t.index ["user_id"], name: "index_visited_places_on_user_id"
+    t.index ["registered_place_id"], name: "index_visitors_on_registered_place_id"
+    t.index ["user_id"], name: "index_visitors_on_user_id"
   end
 
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"

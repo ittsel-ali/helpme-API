@@ -1,3 +1,0 @@
-class VisitedPlace < ApplicationRecord
-
-end

@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :text
       t.string :price
 
-      t.references :visited_place
+      t.references :visitor
       t.timestamps
     end
   end
