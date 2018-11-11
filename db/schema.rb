@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_010139) do
+ActiveRecord::Schema.define(version: 2018_11_11_001210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 2018_11_10_010139) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["couponable_type", "couponable_id"], name: "index_coupons_on_couponable_type_and_couponable_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "file"
+    t.string "image_type"
+    t.string "imagable_type"
+    t.bigint "imagable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imagable_type", "imagable_id"], name: "index_images_on_imagable_type_and_imagable_id"
   end
 
   create_table "nearby_places", force: :cascade do |t|

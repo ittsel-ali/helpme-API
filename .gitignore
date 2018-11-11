@@ -17,6 +17,11 @@
 !/log/.keep
 !/tmp/.keep
 
+.DS_Store
+doc/
+erd.pdf
+lib/tasks/auto_generate_diagram.rake
+public/uploads/
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
