@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
-  mount_base64_uploader :file, AvatarUploader
+  mount_uploader :file, AvatarUploader
 
   belongs_to :imagable, polymorphic: true
 
