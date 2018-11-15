@@ -1,16 +1,17 @@
 class PostsController < ApplicationController
-  before_action :doorkeeper_authorize!
-
   def create
-    post = Post.new(permit_params)
-    post.save!(validate: false)
+    post = @visitor.posts.create(permit_params)
 
-    render json: post.image.file_url(:small)
+    render json: post.image.file_url
   end
 
   private
 
   def permit_params
     params.require(:post).permit(:text, :price, image_attributes: [:file])
+  end
+
+  def set_visitor
+    @visitor = Visitor.find(params[:id])
   end
 end

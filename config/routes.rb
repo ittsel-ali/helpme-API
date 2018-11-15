@@ -19,6 +19,12 @@ resource :places, only: [] do
     end
   end
 
-resource :post
+resource :registered_places do
+  resource :visitors
+end
+
+resource :visitors, as: :visits, path: "visits" do
+  resource :posts
+end
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
