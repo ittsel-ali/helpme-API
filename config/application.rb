@@ -17,7 +17,7 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+Dotenv::Railtie.load if ENV['RAILS_ENV'] == 'development'
 
 require_relative 'env_to_const'
 
