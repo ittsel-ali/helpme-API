@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-
+  skip_before_action :doorkeeper_authorize!
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
@@ -29,6 +29,8 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
+  private
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :confirmation_password)
