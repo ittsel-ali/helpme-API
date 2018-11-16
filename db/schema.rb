@@ -117,12 +117,12 @@ ActiveRecord::Schema.define(version: 2018_11_11_001210) do
 
   create_table "visitors", force: :cascade do |t|
     t.boolean "active?", default: false, null: false
-    t.bigint "user_id"
+    t.bigint "user_location_id"
     t.bigint "registered_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["registered_place_id"], name: "index_visitors_on_registered_place_id"
-    t.index ["user_id"], name: "index_visitors_on_user_id"
+    t.index ["user_location_id"], name: "index_visitors_on_user_location_id"
   end
 
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"

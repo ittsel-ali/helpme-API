@@ -3,7 +3,7 @@ class CreateVisitors < ActiveRecord::Migration[5.2]
     create_table :visitors do |t|
       t.boolean :active?, default: false, null: false
 
-      t.references :user
+      t.references :user_location
       t.references :registered_place
       t.timestamps
     end

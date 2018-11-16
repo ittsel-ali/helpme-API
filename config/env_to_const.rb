@@ -1,7 +1,7 @@
 GOOGLE_API_KEY = ENV['GOOGLE_API_KEY']
-SMALL_RADIUS = 1
-LARGE_RADIUS = 20
-PLACE_TYPES = ['supermarket', 'shopping_mall' 'store', 'food', 'cafe']
+SMALL_RADIUS = 20
+LARGE_RADIUS = 1000
+PLACE_TYPES = ['supermarket', 'shopping_mall' 'store', 'food', 'cafe', 'pharmacy']
 AWS_BUCKET_NAME = ENV['AWS_BUCKET_NAME']
 AWS_KEY_ID = ENV['AWS_KEY_ID']
 AWS_SECRET = ENV['AWS_SECRET']
