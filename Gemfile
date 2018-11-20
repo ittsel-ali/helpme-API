@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.1'
 gem 'puma', '~> 3.11'
 gem 'google_places'
 gem 'gistance'
-
+gem 'txtlocal', :git => 'git://github.com/epigenesys/txtlocal.git'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -39,6 +39,7 @@ gem 'carrierwave-base64'
 gem 'mini_magick'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+gem 'rabl'
 gem 'rabl-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,7 +53,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
