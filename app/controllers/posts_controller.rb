@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_action :set_visitor
+
   def create
     post = @visitor.posts.create(permit_params)
 
-    render json: post.image.file_url
+    render json: post.image.file_url(:mobile)
   end
 
   private
@@ -12,6 +14,6 @@ class PostsController < ApplicationController
   end
 
   def set_visitor
-    @visitor = Visitor.find(params[:id])
+    @visitor = current_user.try(:user_locations).try(:first).try(:visitors).try(:where, active?: true).try(:first)
   end
 end

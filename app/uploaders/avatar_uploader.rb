@@ -41,8 +41,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :small, :if => :image_to_post?  do
-    process resize_to_fit: [1080, 760]
+  version :mobile, :if => :image_to_post?  do
+    process resize_to_fit: [1080, 540]
     process :add_text
   end
 
@@ -52,13 +52,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
       image.combine_options do |c|
         c.gravity 'South'
-        c.pointsize '100'
-        c.draw "text 0,0 '#{post.text}'"
+        c.font 'Times-New-Roman'
+        c.pointsize '50'
+        c.draw "text 0,0 '#{post.text.titleize}'"
         c.fill 'white'
 
         c.gravity 'NorthEast'
-        c.pointsize '200'
-        c.draw "text 0,0 '#{post.price}'"
+        c.pointsize '100'
+        c.draw "text 0,0 '$#{post.price}'"
         c.fill 'white'
       end
       image
