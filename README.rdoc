@@ -4,11 +4,11 @@ This project contains the web server and WEB API. It's the monolith that control
 the application. The app provides following services:
 
 == API Features
-Register User (User Account Setup)
-Authenticate User (User Personalisation)
-Post Create/Update/Delete/Show (Product/item sharing which includes image upload as well)
-Nearby Places based on current user location (Google Maps API integration)
-Places Registration/Restriction (only allow places which are registered in the app)
+* Register User (User Account Setup)
+* Authenticate User (User Personalisation)
+* Post Create/Update/Delete/Show (Product/item sharing which includes image upload as well)
+* Nearby Places based on current user location (Google Maps API integration)
+* Places Registration/Restriction (only allow places which are registered in the app)
 
 Further reading links below.
 
